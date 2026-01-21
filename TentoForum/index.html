@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alegría Forum | Restaurante en Barcelona</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif;}
+body{background:#f5f5f5;color:#333;}
+
+header{
+background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url("img/imagen cabecera.jpg");
+background-size: cover;
+background-position: center 10%;
+color:white;
+padding:70px 20px;
+text-align:center;
+}
+
+section{padding:40px 20px;max-width:1000px;margin:auto;}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+h2{margin-bottom:15px;color:#111;}
+
+.btn{
+display:inline-block;
+background:#111;
+color:white;
+padding:12px 20px;
+border-radius:6px;
+text-decoration:none;
+margin-top:10px;
+cursor:pointer;
+border:none;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.menu-item{text-align:center;}
+.menu-item img{
+width:100%;
+height:auto;
+border-radius:10px;
+margin-bottom:8px;
+cursor:pointer;
+}
+
+.footer{background:#111;color:white;text-align:center;padding:20px;margin-top:40px;}
+
+iframe{width:100%;height:300px;border:0;border-radius:10px;}
+
+textarea{width:100%;padding:10px;border-radius:5px;border:1px solid #ccc;}
+
+#reviewsContainer .card{background:#fafafa;padding:15px;margin-top:10px;}
+
+.stars span{
+font-size:25px;
+cursor:pointer;
+color:#ccc;
+}
+.stars span.active{color:gold;}
+
+.whatsapp-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 18px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:1000;
+}
+
+/* Lightbox */
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.lightbox.active{
+display:flex;
+cursor:pointer;
+}
+
+@media(max-width:600px){
+header h1{font-size:26px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Alegría Forum</h1>
+<p>Desayunos · Pizzas · Paellas · Tapas</p>
+<a class="btn" href="tel:625551528">Llamar ahora</a>
+</header>
+
+<section>
+
+<div class="card">
+<h2>Sobre nosotros</h2>
+<p>
+En Alegría Forum trabajamos cada día para ofrecer una experiencia sencilla, cercana y de calidad. Nuestro restaurante nace con la idea de ser un punto de encuentro para el barrio, donde disfrutar de buenos desayunos, comidas caseras y platos tradicionales preparados con cuidado.
+<br><br>
+Contamos con una carta variada que incluye pizzas, paellas, tapas y opciones para todos los gustos, siempre manteniendo un trato familiar y un ambiente acogedor.
+</p>
+</div>
+
+<div class="card">
+<h2>Menú</h2>
+<div class="menu-grid">
+
+<div class="menu-item">
+<img src="img/desayunos.jpg" class="zoomable">
+<p>Desayunos</p>
+</div>
+
+<div class="menu-item">
+<img src="img/preciocombos.jpg" class="zoomable">
+<p>Combos</p>
+</div>
+
+<div class="menu-item">
+<img src="img/pregiomenu.jpg" class="zoomable">
+<p>Menú</p>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h2>Horario</h2>
+<ul>
+<li>Lunes a viernes: 7:00 – 17:00</li>
+<li>Sábado: 8:00 – 16:00</li>
+<li>Domingo: 8:00 – 16:00</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Contacto</h2>
+<p><strong>Dirección:</strong> Rambla de Prim, 27, Barcelona</p>
+<p><strong>Teléfono:</strong> 625 551 528</p>
+</div>
+
+<div class="card">
+<h2>Deja aquí tu Reseña</h2>
+
+<div class="stars" id="stars">
+<span data-value="1">★</span>
+<span data-value="2">★</span>
+<span data-value="3">★</span>
+<span data-value="4">★</span>
+<span data-value="5">★</span>
+</div>
+
+<form id="reviewForm">
+<textarea id="comment" placeholder="Escribe tu reseña aquí..." required></textarea>
+<button type="submit" class="btn">Publicar</button>
+</form>
+
+<h3>Reseñas recientes:</h3>
+<div id="reviewsContainer"></div>
+</div>
+
+<div class="card">
+<h2>Cómo llegar</h2>
+<iframe src="https://www.google.com/maps?q=Rambla%20de%20Prim%2027%20Barcelona&output=embed"></iframe>
+</div>
+
+</section>
+
+<div class="footer">
+<p>© 2026 Alegría Forum</p>
+</div>
+
+<a class="whatsapp-btn" href="https://wa.me/34625551528" target="_blank">💬</a>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+<img src="" id="lightboxImg">
+</div>
+
+<script>
+let selectedStars = 0;
+
+document.querySelectorAll('.stars span').forEach(star=>{
+star.addEventListener('click',()=>{
+selectedStars = star.dataset.value;
+document.querySelectorAll('.stars span').forEach(s=>{
+s.classList.toggle('active', s.dataset.value <= selectedStars);
+});
+});
+});
+
+const form = document.getElementById('reviewForm');
+const container = document.getElementById('reviewsContainer');
+
+form.addEventListener('submit', function(e){
+e.preventDefault();
+
+const comment = document.getElementById('comment').value;
+
+const reviewDiv = document.createElement('div');
+reviewDiv.className = 'card';
+
+let starsHTML = '⭐'.repeat(selectedStars);
+
+reviewDiv.innerHTML = `<strong>${starsHTML}</strong><p>${comment}</p>`;
+
+container.prepend(reviewDiv);
+
+form.reset();
+selectedStars = 0;
+document.querySelectorAll('.stars span').forEach(s=>s.classList.remove('active'));
+});
+
+// Lightbox JS
+const zoomImages = document.querySelectorAll('.zoomable');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+zoomImages.forEach(img=>{
+img.addEventListener('click',()=>{
+lightboxImg.src = img.src;
+lightbox.classList.add('active');
+});
+});
+
+lightbox.addEventListener('click',()=>{
+lightbox.classList.remove('active');
+});
+</script>
+
+</body>
+</html>
